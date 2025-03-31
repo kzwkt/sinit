@@ -7,5 +7,6 @@ cd $repo
 make dist
 make DESTDIR="$PWD/pkg" install
 tar -czvf $repo-static.tar.gz -C "$PWD/pkg" .
+ls -lah
 
 
