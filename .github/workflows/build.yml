@@ -1,0 +1,22 @@
+name: build sbase musl static
+on: workflow_dispatch
+jobs:
+  build-sbase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Build sbase
+        run: |
+            bash build.sh
+            echo "FILE1=$(realpath sbase/sbase-0.1.tar.gz)" >> $GITHUB_ENV
+            echo "FILE2=$(realpath sbase/sbase-static-tar.gz)" >> $GITHUB_ENV
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: sbase
+          files: |
+            ${{ env.FILE1 }}
+            ${{ env.FILE2 }}
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
