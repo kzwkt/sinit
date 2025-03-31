@@ -11,7 +11,7 @@ jobs:
             bash build.sh
             repo=$(cat repo)
             echo "FILE1=$(realpath $repo/$repo-1.1.tar.gz)" >> $GITHUB_ENV
-            echo "FILE2=$(realpath $repo/$repo-static-tar.gz)" >> $GITHUB_ENV
+            echo "FILE2=$(realpath $repo/$repo-static.tar.gz)" >> $GITHUB_ENV
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
